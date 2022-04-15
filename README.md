@@ -20,15 +20,7 @@ From a users perspective, you mount your local project directory into the contai
 
 **HTTP/2 is enabled by default for all SSL connections.**
 
-| Docker Hub | Upstream Project |
-|------------|------------------|
-| <a href="https://hub.docker.com/r/devilbox/apache-2.4"><img height="82px" src="http://dockeri.co/image/devilbox/apache-2.4" /></a> | <a href="https://github.com/cytopia/devilbox" ><img height="82px" src="https://raw.githubusercontent.com/devilbox/artwork/master/submissions_banner/cytopia/01/png/banner_256_trans.png" /></a> |
-
-**[Apache 2.2](https://github.com/devilbox/docker-apache-2.2) | Apache 2.4 | [Nginx stable](https://github.com/devilbox/docker-nginx-stable) | [Nginx mainline](https://github.com/devilbox/docker-nginx-mainline)**
-
 ----
-
-
 ## Usage
 
 #### Automated virtual hosts
@@ -79,7 +71,7 @@ docker run -it \
     -e MASS_VHOST_DOCROOT=www \
     -e MASS_VHOST_TLD=.loc \
     -v /local/path:/shared/httpd \
-    devilbox/apache-2.4
+    wp4nuv/apache-2.4
 ```
 
 #### Customization per virtual host

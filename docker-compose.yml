@@ -1,0 +1,44 @@
+version: '2.3'
+services:
+  bind:
+    image: cytopia/bind:alpine-0.28
+    hostname: bind
+    restart: always
+    ports:
+      # [local-machine:]local-port:docker-port
+      - "53:53/tcp"
+      - "53:53/udp"
+    dns:
+      - 127.0.0.1
+    extra_hosts:
+      docker.for.lin.host.internal: 172.16.238.1
+      docker.for.lin.localhost: 172.16.238.1
+
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.100
+
+  httpd:
+    build:
+      context: ./Dockerfiles
+      dockerfile: Dockerfile.debian
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.11
+
+  php:
+    image: php:7.4.28-fpm
+
+networks:
+  app_net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
